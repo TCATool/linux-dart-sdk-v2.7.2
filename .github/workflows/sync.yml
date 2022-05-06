@@ -13,7 +13,7 @@ jobs:
         run: |
           git init
           git remote add origin https://github.com/${GITHUB_REPOSITORY}.git
-          git fetch --all
+          git lfs fetch --all
           for branch in `git branch -a | grep remotes | grep -v HEAD`; do
             git branch --track ${branch##*/} $branch
           done
@@ -25,8 +25,8 @@ jobs:
           git show-ref # debug
           git branch --verbose
           # publish all
-          git push --all tgit
-          git push --tags tgit
+          git lfs push --all tgit
+          git lfs push --tags tgit
         env:
           TGIT_USERNAME: ${{ secrets.TGIT_USERNAME }}
           TGIT_PASSWORD: ${{ secrets.TGIT_PASSWORD }}
